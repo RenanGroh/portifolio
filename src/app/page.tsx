@@ -1,26 +1,42 @@
-import { siteConfig } from "@/config";
+import { siteConfig, getFeaturedProjects, skills, categoryLabels, type SkillCategory } from "@/config";
+import { MainLayout } from "@/components/templates/MainLayout";
+import { Container, Section } from "@/components/atoms/Layout";
+import { Typography } from "@/components/atoms/Typography";
+import { GradientText } from "@/components/atoms/GlowText";
+import { ProjectGrid } from "@/components/organisms/ProjectCard";
+import { ContactForm } from "@/components/organisms/ContactForm";
+import { SkillBadgeGroup } from "@/components/molecules/SkillBadge";
 
 export default function Home() {
+  const featuredProjects = getFeaturedProjects();
+  
+  // Group skills by category
+  const skillsByCategory = skills.reduce((acc, skill) => {
+    if (!acc[skill.category]) acc[skill.category] = [];
+    acc[skill.category].push(skill);
+    return acc;
+  }, {} as Record<SkillCategory, typeof skills>);
+
   return (
-    <main className="relative min-h-screen">
-      {/* Hero Section Placeholder */}
-      <section className="flex min-h-screen flex-col items-center justify-center px-6">
+    <MainLayout>
+      {/* Hero Section */}
+      <section className="relative flex min-h-screen flex-col items-center justify-center px-6">
         <div className="text-center">
-          <p className="mb-4 font-mono text-sm text-text-muted tracking-wider uppercase">
+          <Typography variant="muted" className="mb-4 font-mono tracking-wider uppercase">
             Fullstack Developer & Gamedev
-          </p>
+          </Typography>
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">
-            <span className="text-gradient">{siteConfig.author.name}</span>
+            <GradientText animate>{siteConfig.author.name}</GradientText>
           </h1>
-          <p className="max-w-xl mx-auto text-lg text-text-secondary leading-relaxed">
+          <Typography variant="lead" className="max-w-xl mx-auto">
             {siteConfig.description}
-          </p>
+          </Typography>
           
           {/* Placeholder for 3D Canvas - Phase 3 */}
           <div className="mt-12 glass rounded-2xl p-8 max-w-md mx-auto">
-            <p className="text-text-muted text-sm">
+            <Typography variant="small" color="muted">
               ✨ 3D Particle Scene will be rendered here
-            </p>
+            </Typography>
           </div>
         </div>
         
@@ -32,45 +48,85 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Section Placeholder */}
-      <section id="about" className="min-h-screen flex items-center justify-center px-6 py-24">
-        <div className="max-w-3xl text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8">About</h2>
-          <p className="text-text-secondary text-lg">
-            Section content will be added in Phase 4.
-          </p>
-        </div>
-      </section>
+      {/* About Section */}
+      <Section id="about">
+        <Container size="md" className="text-center">
+          <Typography variant="h2" className="mb-8">About</Typography>
+          <Typography variant="lead" className="mb-6">
+            I&apos;m a passionate developer who loves building scalable systems
+            and creating immersive experiences. With expertise in backend
+            technologies and a growing interest in game development, I bring
+            a unique perspective to every project.
+          </Typography>
+          <Typography variant="body" color="secondary">
+            I value clean code, solid architecture, and continuous learning.
+            When I&apos;m not coding, you&apos;ll find me exploring new technologies
+            or working on indie game projects.
+          </Typography>
+        </Container>
+      </Section>
 
-      {/* Stack Section Placeholder */}
-      <section id="stack" className="min-h-screen flex items-center justify-center px-6 py-24 bg-bg-secondary">
-        <div className="max-w-5xl text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8">Tech Stack</h2>
-          <p className="text-text-secondary text-lg">
-            Interactive visualization will be added in Phase 3.
-          </p>
-        </div>
-      </section>
+      {/* Stack Section */}
+      <Section id="stack" className="bg-bg-secondary">
+        <Container size="lg">
+          <div className="text-center mb-12">
+            <Typography variant="h2" className="mb-4">Tech Stack</Typography>
+            <Typography variant="lead">
+              Technologies and tools I work with
+            </Typography>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {(Object.keys(skillsByCategory) as SkillCategory[]).map((category) => (
+              <div key={category} className="space-y-4">
+                <Typography variant="h4" className="text-text-secondary">
+                  {categoryLabels[category]}
+                </Typography>
+                <SkillBadgeGroup 
+                  skills={skillsByCategory[category]} 
+                  animate 
+                />
+              </div>
+            ))}
+          </div>
+        </Container>
+      </Section>
 
-      {/* Projects Section Placeholder */}
-      <section id="projects" className="min-h-screen flex items-center justify-center px-6 py-24">
-        <div className="max-w-6xl text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8">Projects</h2>
-          <p className="text-text-secondary text-lg">
-            Project cards will be added in Phase 4.
-          </p>
-        </div>
-      </section>
+      {/* Projects Section */}
+      <Section id="projects">
+        <Container size="lg">
+          <div className="text-center mb-12">
+            <Typography variant="h2" className="mb-4">Projects</Typography>
+            <Typography variant="lead">
+              Featured work and side projects
+            </Typography>
+          </div>
+          
+          {featuredProjects.length > 0 ? (
+            <ProjectGrid projects={featuredProjects} columns={2} />
+          ) : (
+            <div className="text-center py-12">
+              <Typography variant="body" color="muted">
+                Projects coming soon...
+              </Typography>
+            </div>
+          )}
+        </Container>
+      </Section>
 
-      {/* Contact Section Placeholder */}
-      <section id="contact" className="min-h-screen flex items-center justify-center px-6 py-24 bg-bg-secondary">
-        <div className="max-w-xl text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8">Contact</h2>
-          <p className="text-text-secondary text-lg">
-            Contact form will be added in Phase 4.
-          </p>
-        </div>
-      </section>
-    </main>
+      {/* Contact Section */}
+      <Section id="contact" className="bg-bg-secondary">
+        <Container size="sm">
+          <div className="text-center mb-12">
+            <Typography variant="h2" className="mb-4">Get in Touch</Typography>
+            <Typography variant="lead">
+              Have a project in mind? Let&apos;s talk about it.
+            </Typography>
+          </div>
+          
+          <ContactForm />
+        </Container>
+      </Section>
+    </MainLayout>
   );
 }

@@ -37,7 +37,7 @@ const cardVariants = cva(
 );
 
 export interface CardProps
-  extends React.HTMLAttributes<HTMLDivElement>,
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, "onDrag" | "onDragStart" | "onDragEnd">,
     VariantProps<typeof cardVariants> {
   animate?: boolean;
 }
@@ -53,7 +53,6 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          {...props}
         >
           {children}
         </motion.div>

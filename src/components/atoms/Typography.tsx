@@ -14,7 +14,7 @@ const typographyVariants = cva("", {
       muted: "text-sm text-text-muted",
       code: "font-mono text-sm bg-bg-secondary px-1.5 py-0.5 rounded",
     },
-    color: {
+    textColor: {
       default: "text-text-primary",
       secondary: "text-text-secondary",
       muted: "text-text-muted",
@@ -24,16 +24,17 @@ const typographyVariants = cva("", {
   },
   defaultVariants: {
     variant: "body",
-    color: "default",
+    textColor: "default",
   },
 });
 
 type TypographyElement = "h1" | "h2" | "h3" | "h4" | "p" | "span" | "code";
 
 export interface TypographyProps
-  extends React.HTMLAttributes<HTMLElement>,
+  extends Omit<React.HTMLAttributes<HTMLElement>, "color">,
     VariantProps<typeof typographyVariants> {
   as?: TypographyElement;
+  color?: "default" | "secondary" | "muted" | "accent" | "gradient";
 }
 
 const elementMap: Record<NonNullable<TypographyProps["variant"]>, TypographyElement> = {
@@ -60,7 +61,7 @@ export function Typography({
 
   return (
     <Component
-      className={cn(typographyVariants({ variant, color, className }))}
+      className={cn(typographyVariants({ variant, textColor: color, className }))}
       {...props}
     >
       {children}
