@@ -1,5 +1,6 @@
 // Organisms - Complex UI components
-// Export all organism components from here
 
-// Components will be added in Phase 2
-export {};
+export { Header, type HeaderProps } from "./Header";
+export { Footer, type FooterProps } from "./Footer";
+export { ContactForm, type ContactFormProps } from "./ContactForm";
+export { ProjectCard, ProjectGrid, type ProjectCardProps, type ProjectGridProps } from "./ProjectCard";
