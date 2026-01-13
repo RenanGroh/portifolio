@@ -37,7 +37,7 @@ export function HeroSection() {
             variant="muted"
             className="mb-4 font-mono tracking-[0.2em] uppercase"
           >
-            Fullstack Developer & Gamedev
+            Fullstack Developer
           </Typography>
         </motion.div>
 

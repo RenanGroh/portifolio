@@ -3,9 +3,9 @@
  */
 export const siteConfig = {
   name: "Portfolio",
-  title: "Fullstack Developer & Gamedev",
+  title: "Renan Groh",
   description:
-    "Fullstack Developer specializing in Java, Node.js, C# and Game Development. Building scalable systems with clean architecture and SOLID principles.",
+    "Fullstack Developer specializing in Java, Node.js, C# and Game Development as hobby. Building scalable systems with clean architecture and SOLID principles.",
   url: "https://your-domain.com",
   author: {
     name: "Renan Groh",
