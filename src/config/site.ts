@@ -8,10 +8,10 @@ export const siteConfig = {
     "Fullstack Developer specializing in Java, Node.js, C# and Game Development. Building scalable systems with clean architecture and SOLID principles.",
   url: "https://your-domain.com",
   author: {
-    name: "Your Name",
-    email: "your@email.com",
-    github: "https://github.com/yourusername",
-    linkedin: "https://linkedin.com/in/yourusername",
+    name: "Renan Groh",
+    email: "renangroh@email.com",
+    github: "https://github.com/renangroh",
+    linkedin: "https://linkedin.com/in/renangroh",
   },
   keywords: [
     "Fullstack Developer",

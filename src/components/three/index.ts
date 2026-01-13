@@ -1,5 +1,6 @@
 // Three.js / React Three Fiber components
-// Export all 3D components from here
 
-// Components will be added in Phase 3
-export {};
+export { Scene, SceneLoader, type SceneProps } from "./Scene";
+export { ParticleField, FloatingGeometry, type ParticleFieldProps } from "./ParticleField";
+export { PostProcessing, SceneLighting, GradientBackground, type PostProcessingProps } from "./Effects";
+export { HeroScene } from "./HeroScene";

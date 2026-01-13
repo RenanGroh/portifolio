@@ -27,8 +27,8 @@ export const projects: Project[] = [
     longDescription:
       "A longer description that goes into more detail about the project, its architecture, challenges faced, and solutions implemented.",
     tags: ["Java", "Spring Boot", "PostgreSQL", "Docker"],
-    github: "https://github.com/yourusername/project",
-    demo: "https://project-demo.com",
+    github: "todo",
+    demo: "todo",
     featured: true,
     year: 2025,
   },
