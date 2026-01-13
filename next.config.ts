@@ -15,15 +15,23 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  // Webpack configuration for Three.js and GLSL shaders
-  webpack: (config) => {
-    // Handle GLSL shader files
-    config.module.rules.push({
-      test: /\.(glsl|vs|fs|vert|frag)$/,
-      type: "asset/source",
-    });
-
-    return config;
+  // Turbopack configuration (Next.js 16+ default bundler)
+  turbopack: {
+    rules: {
+      // Handle GLSL shader files
+      "*.glsl": {
+        loaders: ["raw-loader"],
+        as: "*.js",
+      },
+      "*.vert": {
+        loaders: ["raw-loader"],
+        as: "*.js",
+      },
+      "*.frag": {
+        loaders: ["raw-loader"],
+        as: "*.js",
+      },
+    },
   },
 };
 

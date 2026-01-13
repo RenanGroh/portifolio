@@ -21,8 +21,8 @@ export const siteConfig = {
     "Game Development",
     "Clean Architecture",
     "SOLID",
-  ],
-} as const;
+  ] as string[],
+};
 
 /**
  * Navigation links
