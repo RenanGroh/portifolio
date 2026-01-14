@@ -17,11 +17,15 @@ export function AboutSection() {
   return (
     <section
       id="about"
-      className="relative py-24 md:py-32 overflow-hidden"
+      className="relative py-24 md:py-32"
     >
       {/* 3D Background */}
-      <AboutScene />
-      <Container>
+      <div className="absolute inset-0 overflow-hidden">
+        <AboutScene />
+      </div>
+      
+      {/* Content */}
+      <Container className="relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left: About text */}
           <div className="space-y-6">
