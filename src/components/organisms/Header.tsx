@@ -60,15 +60,29 @@ export function Header({ className }: HeaderProps) {
     <>
       <motion.header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-          isScrolled ? "glass py-4" : "py-6 bg-transparent",
+          "fixed top-0 left-0 right-0 z-50",
           className
         )}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
+        {/* Background layer with transition */}
+        <div
+          className={cn(
+            "absolute inset-0 transition-opacity duration-300",
+            isScrolled ? "opacity-100" : "opacity-0"
+          )}
+        >
+          <div className="absolute inset-0 glass" />
+        </div>
+        
+        {/* Content layer */}
+        <div className={cn(
+          "relative transition-[padding] duration-300 max-w-6xl mx-auto px-6 flex items-center justify-between",
+          isScrolled ? "py-4" : "py-6"
+        )}
+        >
           {/* Logo */}
           <a
             href="#"
