@@ -54,6 +54,11 @@ export const skills: Skill[] = [
   { name: "Clean Architecture", category: "tools", level: "expert" },
   { name: "SOLID", category: "tools", level: "expert" },
   { name: "TDD", category: "tools", level: "advanced" },
+  { name: "Docker", category: "tools", level: "advanced" },
+  { name: "AWS", category: "tools", level: "advanced" },
+  { name: "Git", category: "tools", level: "advanced" },
+  { name: "Linux", category: "tools", level: "advanced" },
+  { name: "Microservices", category: "tools", level: "advanced" },
 ];
 
 /**

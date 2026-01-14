@@ -4,6 +4,7 @@ import { FadeIn, StaggerContainer, StaggerItem, Parallax } from "@/components/an
 import { Typography } from "@/components/atoms/Typography";
 import { Container } from "@/components/atoms/Layout";
 import { SkillBadge } from "@/components/molecules/SkillBadge";
+import { AboutScene } from "@/components/three/SectionScenes";
 import { siteConfig } from "@/config/site";
 import { skills } from "@/config/skills";
 import { useTranslation } from "@/hooks/useI18n";
@@ -16,8 +17,10 @@ export function AboutSection() {
   return (
     <section
       id="about"
-      className="relative py-24 md:py-32 bg-gradient-to-b from-transparent via-bg-secondary/30 to-transparent"
+      className="relative py-24 md:py-32 overflow-hidden"
     >
+      {/* 3D Background */}
+      <AboutScene />
       <Container>
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left: About text */}
@@ -97,9 +100,8 @@ export function AboutSection() {
         </div>
       </Container>
 
-      {/* Decorative elements */}
-      <div className="absolute top-1/4 left-0 w-64 h-64 bg-accent-primary/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-accent-secondary/5 rounded-full blur-3xl pointer-events-none" />
+      {/* Gradient overlay for content readability */}
+      <div className="absolute inset-0 -z-5 bg-gradient-to-r from-bg-primary/90 via-bg-primary/70 to-transparent pointer-events-none" />
     </section>
   );
 }

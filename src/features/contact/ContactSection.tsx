@@ -5,6 +5,7 @@ import { Typography } from "@/components/atoms/Typography";
 import { Container } from "@/components/atoms/Layout";
 import { ContactForm } from "@/components/organisms/ContactForm";
 import { SocialLinks } from "@/components/molecules/SocialLinks";
+import { ContactScene } from "@/components/three/SectionScenes";
 import { siteConfig } from "@/config/site";
 import { Mail, MapPin, Calendar } from "lucide-react";
 import { useTranslation } from "@/hooks/useI18n";
@@ -13,8 +14,11 @@ export function ContactSection() {
   const { t } = useTranslation();
 
   return (
-    <section id="contact" className="relative py-24 md:py-32 bg-gradient-to-b from-transparent to-bg-secondary/50">
-      <Container>
+    <section id="contact" className="relative py-24 md:py-32 overflow-hidden">
+      {/* 3D Background */}
+      <ContactScene />
+      
+      <Container className="relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Left: Contact Info */}
           <div className="space-y-8">
@@ -101,7 +105,7 @@ export function ContactSection() {
           {/* Right: Contact Form */}
           <Parallax speed={0.1}>
             <FadeIn direction="right" delay={0.2}>
-              <div className="p-6 md:p-8 rounded-2xl bg-bg-tertiary/30 border border-border-primary backdrop-blur-sm">
+              <div className="p-6 md:p-8 rounded-2xl glass">
                 <Typography as="h3" variant="h4" className="text-text-primary mb-6">
                   {t.contact.formTitle}
                 </Typography>
@@ -112,9 +116,8 @@ export function ContactSection() {
         </div>
       </Container>
 
-      {/* Background decorations */}
+      {/* Bottom line decoration */}
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border-primary to-transparent" />
-      <div className="absolute top-1/3 right-0 w-96 h-96 bg-accent-primary/5 rounded-full blur-3xl pointer-events-none" />
     </section>
   );
 }

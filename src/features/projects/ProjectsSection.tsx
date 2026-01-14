@@ -5,6 +5,7 @@ import { Typography } from "@/components/atoms/Typography";
 import { Container } from "@/components/atoms/Layout";
 import { ProjectCard } from "@/components/organisms/ProjectCard";
 import { Button } from "@/components/atoms/Button";
+import { ProjectsScene } from "@/components/three/SectionScenes";
 import { projects } from "@/config/projects";
 import { useTranslation } from "@/hooks/useI18n";
 
@@ -13,8 +14,11 @@ export function ProjectsSection() {
   const featuredProjects = projects.filter((p) => p.featured).slice(0, 3);
 
   return (
-    <section id="projects" className="relative py-24 md:py-32">
-      <Container>
+    <section id="projects" className="relative py-24 md:py-32 overflow-hidden">
+      {/* 3D Background */}
+      <ProjectsScene />
+      
+      <Container className="relative z-10">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <FadeIn>
@@ -71,11 +75,6 @@ export function ProjectsSection() {
           </FadeIn>
         )}
       </Container>
-
-      {/* Background decoration */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-accent-primary/5 to-transparent rounded-full" />
-      </div>
     </section>
   );
 }
