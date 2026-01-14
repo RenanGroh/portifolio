@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://renangroh.dev/sitemap.xml
