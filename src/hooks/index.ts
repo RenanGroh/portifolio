@@ -20,3 +20,6 @@ export {
   useSectionProgress,
   useScrolled 
 } from "./useScrollProgress";
+
+// Internationalization hooks
+export { useI18n, useTranslation } from "./useI18n";

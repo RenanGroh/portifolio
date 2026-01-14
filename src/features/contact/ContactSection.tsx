@@ -7,8 +7,11 @@ import { ContactForm } from "@/components/organisms/ContactForm";
 import { SocialLinks } from "@/components/molecules/SocialLinks";
 import { siteConfig } from "@/config/site";
 import { Mail, MapPin, Calendar } from "lucide-react";
+import { useTranslation } from "@/hooks/useI18n";
 
 export function ContactSection() {
+  const { t } = useTranslation();
+
   return (
     <section id="contact" className="relative py-24 md:py-32 bg-gradient-to-b from-transparent to-bg-secondary/50">
       <Container>
@@ -18,21 +21,20 @@ export function ContactSection() {
             <div>
               <FadeIn>
                 <Typography as="span" variant="small" className="text-accent-primary font-medium uppercase tracking-wider">
-                  Contato
+                  {t.contact.label}
                 </Typography>
               </FadeIn>
 
               <FadeIn delay={0.1}>
                 <Typography as="h2" variant="h2" className="text-text-primary mt-2">
-                  Vamos construir algo{" "}
-                  <span className="text-accent-primary">incrível</span> juntos?
+                  {t.contact.title}{" "}
+                  <span className="text-accent-primary">{t.contact.titleHighlight}</span> {t.contact.titleSuffix}
                 </Typography>
               </FadeIn>
 
               <FadeIn delay={0.2}>
                 <Typography as="p" variant="body" className="text-text-secondary mt-4 max-w-md">
-                  Estou sempre aberto a novas oportunidades e parcerias.
-                  Entre em contato e vamos conversar sobre seu próximo projeto.
+                  {t.contact.description}
                 </Typography>
               </FadeIn>
             </div>
@@ -48,7 +50,7 @@ export function ContactSection() {
                   </div>
                   <div>
                     <Typography as="p" variant="small" className="text-text-muted">
-                      Email
+                      {t.contact.email}
                     </Typography>
                     <Typography as="p" variant="body" className="text-text-primary">
                       {siteConfig.author.email}
@@ -62,10 +64,10 @@ export function ContactSection() {
                   </div>
                   <div>
                     <Typography as="p" variant="small" className="text-text-muted">
-                      Localização
+                      {t.contact.location}
                     </Typography>
                     <Typography as="p" variant="body" className="text-text-primary">
-                      Brasil
+                      {t.contact.locationValue}
                     </Typography>
                   </div>
                 </div>
@@ -76,10 +78,10 @@ export function ContactSection() {
                   </div>
                   <div>
                     <Typography as="p" variant="small" className="text-text-muted">
-                      Disponibilidade
+                      {t.contact.availability}
                     </Typography>
                     <Typography as="p" variant="body" className="text-text-primary">
-                      Aberto a propostas
+                      {t.contact.availabilityValue}
                     </Typography>
                   </div>
                 </div>
@@ -89,7 +91,7 @@ export function ContactSection() {
             <FadeIn delay={0.4}>
               <div className="pt-4">
                 <Typography as="p" variant="small" className="text-text-muted mb-3">
-                  Redes sociais
+                  {t.contact.socials}
                 </Typography>
                 <SocialLinks />
               </div>
@@ -101,7 +103,7 @@ export function ContactSection() {
             <FadeIn direction="right" delay={0.2}>
               <div className="p-6 md:p-8 rounded-2xl bg-bg-tertiary/30 border border-border-primary backdrop-blur-sm">
                 <Typography as="h3" variant="h4" className="text-text-primary mb-6">
-                  Envie uma mensagem
+                  {t.contact.formTitle}
                 </Typography>
                 <ContactForm />
               </div>

@@ -15,6 +15,7 @@ import { TiltCard } from "@/components/molecules/TiltCard";
 import { SkillBadgeGroup } from "@/components/molecules/SkillBadge";
 import { Button } from "@/components/atoms/Button";
 import { Icon } from "@/components/atoms/Icon";
+import { useTranslation } from "@/hooks/useI18n";
 
 export interface ProjectCardProps {
   project: Project;
@@ -29,6 +30,7 @@ export function ProjectCard({
   index = 0,
   useTilt = true,
 }: ProjectCardProps) {
+  const { t } = useTranslation();
   const CardWrapper = useTilt ? TiltCard : Card;
   const wrapperProps = useTilt
     ? { className: cn("h-full", className) }
@@ -40,6 +42,7 @@ export function ProjectCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="h-full"
     >
       <CardWrapper {...wrapperProps}>
         <div className="p-6 h-full flex flex-col">
@@ -54,23 +57,25 @@ export function ProjectCard({
               </div>
               {project.featured && (
                 <span className="px-2 py-1 text-xs bg-bg-tertiary rounded-full text-text-secondary">
-                  Featured
+                  {t.projects.featured}
                 </span>
               )}
             </div>
           </CardHeader>
 
           {/* Description */}
-          <CardContent className="flex-grow">
-            <CardDescription className="mb-4">
+          <CardContent className="flex-grow flex flex-col">
+            <CardDescription className="mb-4 line-clamp-3 min-h-[4.5rem]">
               {project.description}
             </CardDescription>
 
             {/* Tags */}
-            <SkillBadgeGroup
-              skills={project.tags.map((tag) => ({ name: tag }))}
-              animate={false}
-            />
+            <div className="mt-auto">
+              <SkillBadgeGroup
+                skills={project.tags.map((tag) => ({ name: tag }))}
+                animate={false}
+              />
+            </div>
           </CardContent>
 
           {/* Actions */}
@@ -83,7 +88,7 @@ export function ProjectCard({
                   rel="noopener noreferrer"
                 >
                   <Icon name="github" size={16} />
-                  Code
+                  {t.projects.code}
                 </a>
               </Button>
             )}
@@ -95,7 +100,7 @@ export function ProjectCard({
                   rel="noopener noreferrer"
                 >
                   <Icon name="external-link" size={16} />
-                  Demo
+                  {t.projects.demo}
                 </a>
               </Button>
             )}

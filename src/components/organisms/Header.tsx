@@ -3,10 +3,11 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { navLinks, siteConfig } from "@/config/site";
+import { siteConfig } from "@/config/site";
 import { NavLink } from "@/components/molecules/NavLink";
-import { Button } from "@/components/atoms/Button";
+import { LanguageSwitcher } from "@/components/molecules/LanguageSwitcher";
 import { Icon } from "@/components/atoms/Icon";
+import { useTranslation } from "@/hooks/useI18n";
 
 export interface HeaderProps {
   className?: string;
@@ -15,6 +16,14 @@ export interface HeaderProps {
 export function Header({ className }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { t } = useTranslation();
+
+  // Navigation links with translated labels
+  const navLinks = [
+    { href: "#about", label: t.nav.about },
+    { href: "#projects", label: t.nav.projects },
+    { href: "#contact", label: t.nav.contact },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -77,11 +86,9 @@ export function Header({ className }: HeaderProps) {
             ))}
           </nav>
 
-          {/* CTA Button (Desktop) */}
+          {/* Language Switcher (Desktop) */}
           <div className="hidden md:block">
-            <Button variant="outline" size="sm" asChild>
-              <a href="#contact">Get in Touch</a>
-            </Button>
+            <LanguageSwitcher />
           </div>
 
           {/* Mobile Menu Button */}
@@ -142,13 +149,7 @@ export function Header({ className }: HeaderProps) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
               >
-                <Button
-                  variant="outline"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  asChild
-                >
-                  <a href="#contact">Get in Touch</a>
-                </Button>
+                <LanguageSwitcher />
               </motion.div>
             </motion.nav>
           </motion.div>

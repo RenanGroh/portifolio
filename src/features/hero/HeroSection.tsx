@@ -9,6 +9,7 @@ import { Button } from "@/components/atoms/Button";
 import { Icon } from "@/components/atoms/Icon";
 import { SocialLinks } from "@/components/molecules/SocialLinks";
 import { SceneLoader } from "@/components/three/Scene";
+import { useTranslation } from "@/hooks/useI18n";
 
 // Dynamic import for 3D scene (client-only, no SSR)
 const HeroScene = dynamic(
@@ -20,6 +21,8 @@ const HeroScene = dynamic(
 );
 
 export function HeroSection() {
+  const { t } = useTranslation();
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* 3D Background */}
@@ -37,7 +40,7 @@ export function HeroSection() {
             variant="muted"
             className="mb-4 font-mono tracking-[0.2em] uppercase"
           >
-            Fullstack Developer
+            {t.hero.role}
           </Typography>
         </motion.div>
 
@@ -65,9 +68,7 @@ export function HeroSection() {
           transition={{ duration: 0.6, delay: 0.6 }}
         >
           <Typography variant="lead" className="max-w-2xl mx-auto mb-8">
-            Building scalable systems with clean architecture.
-            <br className="hidden md:block" />
-            Crafting immersive experiences through code.
+            {t.hero.description}
           </Typography>
         </motion.div>
 
@@ -80,12 +81,12 @@ export function HeroSection() {
         >
           <Button variant="glow" size="lg" asChild>
             <a href="#projects">
-              View Projects
+              {t.hero.cta.primary}
               <Icon name="arrow-right" size={18} />
             </a>
           </Button>
           <Button variant="outline" size="lg" asChild>
-            <a href="#contact">Get in Touch</a>
+            <a href="#contact">{t.hero.cta.secondary}</a>
           </Button>
         </motion.div>
 
@@ -112,7 +113,7 @@ export function HeroSection() {
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         >
-          <span className="text-xs font-mono tracking-wider">SCROLL</span>
+          <span className="text-xs font-mono tracking-wider uppercase">{t.hero.scroll}</span>
           <Icon name="chevron-down" size={20} />
         </motion.a>
       </motion.div>

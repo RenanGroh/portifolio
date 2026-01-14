@@ -6,8 +6,10 @@ import { Container } from "@/components/atoms/Layout";
 import { SkillBadge } from "@/components/molecules/SkillBadge";
 import { siteConfig } from "@/config/site";
 import { skills } from "@/config/skills";
+import { useTranslation } from "@/hooks/useI18n";
 
 export function AboutSection() {
+  const { t, interpolate } = useTranslation();
   const techStack = skills.filter((s) => s.category === "frontend" || s.category === "backend");
   const tools = skills.filter((s) => s.category === "tools");
 
@@ -22,63 +24,30 @@ export function AboutSection() {
           <div className="space-y-6">
             <FadeIn>
               <Typography as="span" variant="small" className="text-accent-primary font-medium uppercase tracking-wider">
-                Sobre mim
+                {t.about.label}
               </Typography>
             </FadeIn>
 
             <FadeIn delay={0.1}>
               <Typography as="h2" variant="h2" className="text-text-primary">
-                Desenvolvedor apaixonado por{" "}
-                <span className="text-accent-primary">criar experiências</span>
+                {t.about.title}{" "}
+                <span className="text-accent-primary">{t.about.titleHighlight}</span>
               </Typography>
             </FadeIn>
 
             <FadeIn delay={0.2}>
               <Typography as="p" variant="body" className="text-text-secondary leading-relaxed">
-                Sou {siteConfig.author.name}, um Desenvolvedor Fullstack com expertise em
-                Java, Node.js e C#. Acredito que código limpo e arquitetura sólida são a
-                base para produtos excepcionais.
+                {interpolate(t.about.description1, { name: siteConfig.author.name })}
               </Typography>
             </FadeIn>
 
             <FadeIn delay={0.3}>
               <Typography as="p" variant="body" className="text-text-secondary leading-relaxed">
-                Além do desenvolvimento web, sou apaixonado por Game Development,
-                combinando criatividade com lógica para construir experiências interativas
-                memoráveis. Sigo princípios SOLID e Clean Architecture em todos os projetos.
+                {t.about.description2}
               </Typography>
             </FadeIn>
 
-            <FadeIn delay={0.4}>
-              <div className="flex gap-4 pt-4">
-                <div className="text-center">
-                  <Typography as="p" variant="h3" className="text-accent-primary">
-                    5+
-                  </Typography>
-                  <Typography as="p" variant="small" className="text-text-muted">
-                    Anos de experiência
-                  </Typography>
-                </div>
-                <div className="w-px bg-border-primary" />
-                <div className="text-center">
-                  <Typography as="p" variant="h3" className="text-accent-primary">
-                    20+
-                  </Typography>
-                  <Typography as="p" variant="small" className="text-text-muted">
-                    Projetos entregues
-                  </Typography>
-                </div>
-                <div className="w-px bg-border-primary" />
-                <div className="text-center">
-                  <Typography as="p" variant="h3" className="text-accent-primary">
-                    100%
-                  </Typography>
-                  <Typography as="p" variant="small" className="text-text-muted">
-                    Comprometimento
-                  </Typography>
-                </div>
-              </div>
-            </FadeIn>
+
           </div>
 
           {/* Right: Skills */}
@@ -87,7 +56,7 @@ export function AboutSection() {
               <FadeIn direction="right">
                 <div className="p-6 rounded-2xl bg-bg-tertiary/50 border border-border-primary backdrop-blur-sm">
                   <Typography as="h3" variant="h4" className="text-text-primary mb-4">
-                    Tech Stack
+                    {t.about.techStack}
                   </Typography>
                   <StaggerContainer className="flex flex-wrap gap-2" staggerDelay={0.05}>
                     {techStack.map((skill) => (
@@ -108,7 +77,7 @@ export function AboutSection() {
               <FadeIn direction="right" delay={0.2}>
                 <div className="p-6 rounded-2xl bg-bg-tertiary/50 border border-border-primary backdrop-blur-sm">
                   <Typography as="h3" variant="h4" className="text-text-primary mb-4">
-                    Ferramentas
+                    {t.about.tools}
                   </Typography>
                   <StaggerContainer className="flex flex-wrap gap-2" staggerDelay={0.05}>
                     {tools.map((skill) => (

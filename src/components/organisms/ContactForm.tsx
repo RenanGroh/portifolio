@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/atoms/Button";
 import { Input, Textarea } from "@/components/atoms/Input";
 import { Icon } from "@/components/atoms/Icon";
+import { useTranslation } from "@/hooks/useI18n";
 
 interface FormData {
   name: string;
@@ -24,6 +25,7 @@ export interface ContactFormProps {
 }
 
 export function ContactForm({ className }: ContactFormProps) {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -106,19 +108,19 @@ export function ContactForm({ className }: ContactFormProps) {
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Input
-          label="Name"
+          label={t.contact.form.name}
           name="name"
-          placeholder="Your name"
+          placeholder={t.contact.form.namePlaceholder}
           value={formData.name}
           onChange={handleChange}
           error={errors.name}
           disabled={isSubmitting}
         />
         <Input
-          label="Email"
+          label={t.contact.form.email}
           name="email"
           type="email"
-          placeholder="your@email.com"
+          placeholder={t.contact.form.emailPlaceholder}
           value={formData.email}
           onChange={handleChange}
           error={errors.email}
@@ -127,9 +129,9 @@ export function ContactForm({ className }: ContactFormProps) {
       </div>
 
       <Textarea
-        label="Message"
+        label={t.contact.form.message}
         name="message"
-        placeholder="Tell me about your project..."
+        placeholder={t.contact.form.messagePlaceholder}
         value={formData.message}
         onChange={handleChange}
         error={errors.message}
@@ -149,11 +151,11 @@ export function ContactForm({ className }: ContactFormProps) {
               <span className="animate-spin">
                 <Icon name="layers" size={16} />
               </span>
-              Sending...
+              {t.contact.form.sending}
             </>
           ) : (
             <>
-              Send Message
+              {t.contact.form.submit}
               <Icon name="arrow-right" size={16} />
             </>
           )}
@@ -166,7 +168,7 @@ export function ContactForm({ className }: ContactFormProps) {
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
           >
-            Message sent successfully!
+            {t.contact.form.success}
           </motion.p>
         )}
         {submitStatus === "error" && (
@@ -175,7 +177,7 @@ export function ContactForm({ className }: ContactFormProps) {
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
           >
-            Failed to send. Please try again.
+            {t.contact.form.error}
           </motion.p>
         )}
       </div>

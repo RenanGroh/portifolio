@@ -6,8 +6,10 @@ import { Container } from "@/components/atoms/Layout";
 import { ProjectCard } from "@/components/organisms/ProjectCard";
 import { Button } from "@/components/atoms/Button";
 import { projects } from "@/config/projects";
+import { useTranslation } from "@/hooks/useI18n";
 
 export function ProjectsSection() {
+  const { t } = useTranslation();
   const featuredProjects = projects.filter((p) => p.featured).slice(0, 3);
 
   return (
@@ -17,21 +19,20 @@ export function ProjectsSection() {
         <div className="text-center max-w-2xl mx-auto mb-16">
           <FadeIn>
             <Typography as="span" variant="small" className="text-accent-primary font-medium uppercase tracking-wider">
-              Portfólio
+              {t.projects.label}
             </Typography>
           </FadeIn>
 
           <FadeIn delay={0.1}>
             <Typography as="h2" variant="h2" className="text-text-primary mt-2">
-              Projetos em{" "}
-              <span className="text-accent-primary">destaque</span>
+              {t.projects.title}{" "}
+              <span className="text-accent-primary">{t.projects.titleHighlight}</span>
             </Typography>
           </FadeIn>
 
           <FadeIn delay={0.2}>
             <Typography as="p" variant="body" className="text-text-secondary mt-4">
-              Uma seleção dos meus trabalhos mais recentes, demonstrando
-              habilidades em diferentes tecnologias e domínios.
+              {t.projects.description}
             </Typography>
           </FadeIn>
         </div>
@@ -53,7 +54,7 @@ export function ProjectsSection() {
           <FadeIn>
             <div className="text-center py-16">
               <Typography as="p" variant="body" className="text-text-muted">
-                Projetos em breve...
+                {t.projects.comingSoon}
               </Typography>
             </div>
           </FadeIn>
@@ -64,7 +65,7 @@ export function ProjectsSection() {
           <FadeIn delay={0.4}>
             <div className="text-center mt-12">
               <Button variant="outline" size="lg" asChild>
-                <a href="/projects">Ver todos os projetos</a>
+                <a href="/projects">{t.projects.viewAll}</a>
               </Button>
             </div>
           </FadeIn>

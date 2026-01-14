@@ -20,15 +20,28 @@ export interface Project {
  */
 export const projects: Project[] = [
   {
-    slug: "project-example",
-    title: "Project Example",
+    slug: "api-de-rota-otimizada-para-entregas",
+    title: "API de Rota Otimizada para Entregas",
     description:
-      "A brief description of the project showcasing the main technologies and purpose.",
+      "Um projeto backend desenvolvido durante o estágio na Compass UOL nas stacks nodejs, nestJs, mongoDB e docker,utilizando arquitetura de microsserviços com dockerização e deploy aws, é um sistema de otimização de rotas para entregas.",
     longDescription:
-      "A longer description that goes into more detail about the project, its architecture, challenges faced, and solutions implemented.",
-    tags: ["Java", "Spring Boot", "PostgreSQL", "Docker"],
-    github: "todo",
-    demo: "todo",
+      "",
+    tags: ["NodeJs", "NestJs", "MongoDB", "Docker", "AWS"],
+    github: "https://github.com/samuvf/rota-otimizada-microservice",
+    //demo: "",
+    featured: true,
+    year: 2025,
+  },
+  {
+    slug: "digitano",
+    title: "Digitano",
+    description:
+      "Um projeto academico desenvolvido em grupo nas stacks php e react, é um jogo de digitação estilo Monkeytype com atenticação, multiplayer e sistema de ligas",
+    longDescription:
+      "",
+    tags: ["php", "react", "SQL", "Docker"],
+    github: "https://github.com/vitor-felipee/digitano",
+    demo: "https://digitano.vercel.app",
     featured: true,
     year: 2025,
   },
