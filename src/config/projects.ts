@@ -1,11 +1,13 @@
 /**
- * Project type definition
+ * Project type definition with i18n support
  */
 export interface Project {
   slug: string;
   title: string;
-  description: string;
-  longDescription?: string;
+  description: {
+    "pt-BR": string;
+    en: string;
+  };
   tags: string[];
   github?: string;
   demo?: string;
@@ -21,25 +23,28 @@ export interface Project {
 export const projects: Project[] = [
   {
     slug: "api-de-rota-otimizada-para-entregas",
-    title: "API de Rota Otimizada para Entregas",
-    description:
-      "Um projeto backend desenvolvido durante o estágio na Compass UOL nas stacks nodejs, nestJs, mongoDB e docker,utilizando arquitetura de microsserviços com dockerização e deploy aws, é um sistema de otimização de rotas para entregas.",
-    longDescription:
-      "",
-    tags: ["NodeJs", "NestJs", "MongoDB", "Docker", "AWS"],
+    title: "Rota Otimizada API",
+    description: {
+      "pt-BR":
+        "API de otimização de rotas para entregas desenvolvida durante estágio na Compass UOL. Arquitetura de microsserviços com containerização Docker e deploy na AWS.",
+      en:
+        "Delivery route optimization API developed during internship at Compass UOL. Microservices architecture with Docker containerization and AWS deployment.",
+    },
+    tags: ["Node.js", "NestJS", "MongoDB", "Docker", "AWS"],
     github: "https://github.com/samuvf/rota-otimizada-microservice",
-    //demo: "",
     featured: true,
     year: 2025,
   },
   {
     slug: "digitano",
     title: "Digitano",
-    description:
-      "Um projeto academico desenvolvido em grupo nas stacks php e react, é um jogo de digitação estilo Monkeytype com atenticação, multiplayer e sistema de ligas",
-    longDescription:
-      "",
-    tags: ["php", "react", "SQL", "Docker"],
+    description: {
+      "pt-BR":
+        "Jogo de digitação estilo Monkeytype desenvolvido em equipe. Sistema completo com autenticação, modo multiplayer e ranking de ligas competitivas.",
+      en:
+        "Monkeytype-style typing game developed as a team project. Full-featured with authentication, multiplayer mode, and competitive league rankings.",
+    },
+    tags: ["PHP", "React", "MySQL", "Docker"],
     github: "https://github.com/vitor-felipee/digitano",
     demo: "https://digitano.vercel.app",
     featured: true,

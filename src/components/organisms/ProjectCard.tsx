@@ -30,11 +30,14 @@ export function ProjectCard({
   index = 0,
   useTilt = true,
 }: ProjectCardProps) {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
   const CardWrapper = useTilt ? TiltCard : Card;
   const wrapperProps = useTilt
     ? { className: cn("h-full", className) }
     : { variant: "default" as const, hover: "lift" as const, className: cn("h-full", className) };
+
+  // Get localized description
+  const description = project.description[locale] || project.description["pt-BR"];
 
   return (
     <motion.div
@@ -47,7 +50,7 @@ export function ProjectCard({
       <CardWrapper {...wrapperProps}>
         <div className="p-6 h-full flex flex-col">
           {/* Header */}
-          <CardHeader className="mb-2">
+          <CardHeader className="mb-2 flex-shrink-0">
             <div className="flex items-start justify-between gap-4">
               <div>
                 <CardTitle className="mb-2">{project.title}</CardTitle>
@@ -56,30 +59,36 @@ export function ProjectCard({
                 </span>
               </div>
               {project.featured && (
-                <span className="px-2 py-1 text-xs bg-bg-tertiary rounded-full text-text-secondary">
+                <span className="px-2 py-1 text-xs bg-bg-tertiary rounded-full text-text-secondary flex-shrink-0">
                   {t.projects.featured}
                 </span>
               )}
             </div>
           </CardHeader>
 
-          {/* Description */}
-          <CardContent className="flex-grow flex flex-col">
-            <CardDescription className="mb-4 line-clamp-3 min-h-[4.5rem]">
-              {project.description}
+          {/* Description - fixed height area */}
+          <CardContent className="flex-grow flex flex-col min-h-0">
+            <CardDescription className="text-sm leading-relaxed line-clamp-4 flex-shrink-0">
+              {description}
             </CardDescription>
-
-            {/* Tags */}
-            <div className="mt-auto">
-              <SkillBadgeGroup
-                skills={project.tags.map((tag) => ({ name: tag }))}
-                animate={false}
-              />
-            </div>
           </CardContent>
 
+          {/* Tags - fixed at bottom of content area */}
+          <div className="px-0 py-3 flex-shrink-0">
+            <div className="flex flex-wrap gap-1.5 min-h-[52px] content-start">
+              {project.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="inline-flex items-center px-2 py-1 rounded-md text-xs bg-bg-secondary border border-border-primary text-text-secondary"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+
           {/* Actions */}
-          <CardFooter className="mt-auto pt-4">
+          <CardFooter className="flex-shrink-0 pt-2 border-t border-border-primary/50">
             {project.github && (
               <Button variant="ghost" size="sm" asChild>
                 <a
