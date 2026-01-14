@@ -80,7 +80,7 @@ export function HeroSection() {
           transition={{ duration: 0.6, delay: 0.8 }}
         >
           <Button variant="glow" size="lg" asChild>
-            <a href="#projects">
+            <a href="#projects" className="inline-flex items-center gap-2 whitespace-nowrap">
               {t.hero.cta.primary}
               <Icon name="arrow-right" size={18} />
             </a>

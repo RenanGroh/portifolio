@@ -66,7 +66,7 @@ export function TiltCard({
         transformStyle: "preserve-3d",
       }}
       className={cn(
-        "relative rounded-2xl bg-bg-secondary border border-border overflow-hidden",
+        "relative rounded-2xl glass overflow-hidden",
         className
       )}
     >
